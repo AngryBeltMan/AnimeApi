@@ -43,6 +43,10 @@ async fn search(search:String) -> String {
         "failure".to_string()
     }
 }
+#[get("/")]
+fn home_page() -> String {
+    String::from("It works")
+}
 #[get("/episodes/<url>")]
 async fn get_episodes(url:String) -> String {
     let url = format!("https://gogoanime.gold/anime/{}",url);
@@ -107,5 +111,5 @@ async fn get_video_src(link:String) -> String {
 }
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/a",routes![search,get_episodes,get_video_src])
+    rocket::build().mount("/a",routes![search,get_episodes,get_video_src,home_page])
 }
